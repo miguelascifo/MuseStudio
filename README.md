@@ -1,5 +1,7 @@
 # MuseStudio
 
+[![DOI](https://zenodo.org/badge/334904649.svg)](https://zenodo.org/badge/latestdoi/334904649)
+
 MuseStudio allows managing data associated to a single or multiple sessions with Muse devices. Additionally, the library allows viewing brain activity data in real time from individuals wearing Muse.
 
 Features:
