@@ -33,10 +33,10 @@ def to_mne_eeg(eegstream = None, line_freq = None,  filenames = None, nasion = N
         read_raw_xdf
         read_raw_xdf_dir
     '''
-    if eegstream == None:
+    if eegstream is None:
         raise(ValueError('Enter parameter array of EEG recordings.'))
     
-    if line_freq == None or line_freq not in [50, 60]:
+    if line_freq is None or line_freq not in [50, 60]:
         raise(ValueError('Enter the powerline frequency of your region (50 Hz or 60 Hz).'))
     
     eegstream = [eegstream] if not isinstance(eegstream, list) else eegstream
@@ -51,7 +51,7 @@ def to_mne_eeg(eegstream = None, line_freq = None,  filenames = None, nasion = N
     
     for index, stream in enumerate(eegstream):
         # Get channels position
-        dig_montage = channels.make_dig_montage(ch_pos=dict(zip(ch_names, sensor_coord)), nasion=nasion[index] if nasion != None else None, lpa=lpa[index] if lpa != None else None, rpa=rpa[index] if rpa != None else None, coord_frame='head')
+        dig_montage = channels.make_dig_montage(ch_pos=dict(zip(ch_names, sensor_coord)), nasion=nasion[index] if nasion is not None else None, lpa=lpa[index] if lpa is not None else None, rpa=rpa[index] if rpa is not None else None, coord_frame='head')
         # Create raw info for processing
         info = create_info(ch_names=dig_montage.ch_names, sfreq=float(stream['info']['nominal_srate'][0]), ch_types='eeg')
         # Add channels position to info
@@ -63,7 +63,7 @@ def to_mne_eeg(eegstream = None, line_freq = None,  filenames = None, nasion = N
         # Create raw data for mne
         raw = io.RawArray(np.array(ord_data).T, info)
         # Get the information of each stream
-        stream_info = stream['info']['name'][0][:9] + ' ' + (filenames[index] if filenames != None else '')
+        stream_info = stream['info']['name'][0][:9] + ' ' + (filenames[index] if filenames is not None else '')
         # Print the information of each stream
         print('\nInfo: ' + str(index) + ' ' + stream_info + '\n')
         # Add the powerline frequency of each stream
@@ -98,14 +98,14 @@ def to_df(mne_eeg = None, eegstream = None, accstream = None, ppgstream = None, 
     See also:
         to_mne_eeg
     '''
-    if mne_eeg == None or eegstream == None:
+    if mne_eeg is None or eegstream is None:
         raise(ValueError('Enter EEG recordings in MNE and array formats.'))
     
     mne_eeg = [mne_eeg] if not isinstance(mne_eeg, list) else mne_eeg
     eegstream = [eegstream] if not isinstance(eegstream, list) else eegstream
-    accstream = [accstream] if not isinstance(accstream, list) and accstream != None else accstream
-    gyrstream = [gyrstream] if not isinstance(gyrstream, list) and gyrstream != None else gyrstream
-    ppgstream = [ppgstream] if not isinstance(ppgstream, list) and ppgstream != None else ppgstream
+    accstream = [accstream] if not isinstance(accstream, list) and accstream is not None else accstream
+    gyrstream = [gyrstream] if not isinstance(gyrstream, list) and gyrstream is not None else gyrstream
+    ppgstream = [ppgstream] if not isinstance(ppgstream, list) and ppgstream is not None else ppgstream
 
     df_array = []
     # Iterate through each stream, convert them into dataframes and merge them
@@ -119,26 +119,26 @@ def to_df(mne_eeg = None, eegstream = None, accstream = None, ppgstream = None, 
         df = df[['timestamp', 'AF7', 'AF8', 'TP9', 'TP10']]
         df.index.rename('index', inplace=True)
 
-        if accstream != None:
+        if accstream is not None:
             df_acc = pd.DataFrame(accstream[index]['time_series'], columns=['X_acc', 'Y_acc', 'Z_acc'])
             # Multiply the indexes to match the incoming eeg data rate from the device (256/50 = 5.12)
             df_acc.index = df_acc.index * 5
             df_acc.index.rename('index', inplace=True)
             df = pd.merge_asof(df, df_acc, on='index', by='index')
 
-        if gyrstream != None:
+        if gyrstream is not None:
             df_gyr = pd.DataFrame(gyrstream[index]['time_series'], columns=['X_gyr', 'Y_gyr', 'Z_gyr'])
             df_gyr.index = df_gyr.index * 5
             df_gyr.index.rename('index', inplace=True)
             df = pd.merge_asof(df, df_gyr, on='index', by='index')
 
-        if ppgstream != None:
+        if ppgstream is not None:
             df_ppg = pd.DataFrame(ppgstream[index]['time_series'], columns=['1_ppg', '2_ppg', '3_ppg'])
             df_ppg.index = df_ppg.index * 4
             df_ppg.index.rename('index', inplace=True)
             df = pd.merge_asof(df, df_ppg, on='index', by='index')
         
-        if accstream != None or gyrstream != None or ppgstream != None:
+        if accstream is not None or gyrstream is not None or ppgstream is not None:
             df.drop('index', axis=1, inplace=True)
         #df.interpolate(method='linear', limit_direction='forward', axis=0, inplace=True)
         

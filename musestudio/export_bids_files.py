@@ -17,7 +17,7 @@ def create_bids_path(setup = None):
     Raises:
         ValueError: if no setup is specified.
     '''
-    if setup == None:
+    if setup is None:
         raise(ValueError('Enter BIDS setup parameter array.'))
     
     setup = [setup] if not isinstance(setup, list) else setup
@@ -82,7 +82,7 @@ def export_bids(raweeg = None, bids_paths = None, participants = None, overwrite
     See also:
         create_bids_path
     '''
-    if raweeg == None or bids_paths == None:
+    if raweeg is None or bids_paths is None:
         raise ValueError('You must enter EEG recording and BIDS path array parameters.')
 
     raweeg = [raweeg] if not isinstance(raweeg, list) else raweeg

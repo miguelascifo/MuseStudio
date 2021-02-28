@@ -11,7 +11,7 @@ def import_bids(setup=None):
     Raises:
         ValueError: if no setup is specified.
     '''
-    if setup == None:
+    if setup is None:
         raise(ValueError('Enter BIDS setup parameter array.'))
 
     setup = [setup] if not isinstance(setup, list) else setup

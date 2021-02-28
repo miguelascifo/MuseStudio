@@ -124,14 +124,14 @@ def start_streaming(inlets, channels = ['TP9', 'AF7', 'AF8', 'TP10'], debug = Fa
                 
                 j = [1, 1, 2, 2, 3]
                 k = [1, 2, 1, 2, 1]
-                for index, column in enumerate(df_to_show.columns):
+                for index2, column in enumerate(df_to_show.columns):
                     fig.add_trace(
                         Scatter({
-                            'x': df_to_show.index,
+                            'x': df_to_show.index2,
                             'y': df_to_show[column]
                         }),
-                        row=j[index],
-                        col=k[index]
+                        row=j[index2],
+                        col=k[index2]
                     )
                 heights = [500, 500, 800, 800, 1100]
                 fig.update_layout(height=heights[len(df_to_show.columns)-1], showlegend=False)

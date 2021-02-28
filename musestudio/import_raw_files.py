@@ -18,7 +18,7 @@ def read_raw_xdf(filename = None):
     See also:
         read_raw_xdf_dir
     '''
-    if filename == None:
+    if filename is None:
         raise(ValueError('Enter XDF file path.'))
 
     if system() == 'Windows':
@@ -47,7 +47,7 @@ def read_raw_xdf_dir(dirname = None):
     See also:
         read_raw_xdf
     '''
-    if dirname == None:
+    if dirname is None:
         raise(ValueError('Enter XDF files directory name.'))
 
     if system() == 'Windows':
