@@ -202,7 +202,7 @@ def serve_layout(channels):
 
             html.P('Expand graphs'),
 
-            BooleanSwitch(id='expand_graphs', on=False),
+            BooleanSwitch(id='expand_graphs', on=False), # lgtm [py/call-to-non-callable]
 
             html.P('Update interval'),
 

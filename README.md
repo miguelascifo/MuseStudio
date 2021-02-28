@@ -1,6 +1,6 @@
 # MuseStudio
 
-[![DOI](https://zenodo.org/badge/334904649.svg)](https://zenodo.org/badge/latestdoi/334904649)
+[![DOI](https://zenodo.org/badge/334904649.svg)](https://zenodo.org/badge/latestdoi/334904649) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/miguelascifo/MuseStudio.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/miguelascifo/MuseStudio/context:python)
 
 MuseStudio allows managing data associated to a single or multiple sessions with Muse devices. Additionally, the library allows viewing brain activity data in real time from individuals wearing Muse.
 
