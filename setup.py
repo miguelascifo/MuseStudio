@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name='musestudio',
     packages=find_packages(),
-    version='0.1.0',
+    version='0.2.0',
     description='Import Muse recordings. Convert data to MNE and Pandas. View brain data in real time.',
     url='https://github.com/miguelascifo/MuseStudio',
     author='Miguel Ángel Sánchez Cifo',
@@ -11,14 +11,13 @@ setup(
     license='MIT',
     install_requires=[
         'dash',
-        'dash_core_components',
         'dash_daq',
-        'dash_html_components',
         'mne',
         'mne_bids',
         'numpy',
         'pandas',
         'plotly',
+        'pybv',
         'pylsl',
         'pyxdf'
     ],

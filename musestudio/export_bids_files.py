@@ -140,6 +140,8 @@ def export_bids(raweeg = None, bids_paths = None, participants = None, overwrite
 
             data = []
             for par in reader:
+                del par['weight']
+                del par['height']
                 for par2 in participants:
                     if par['participant_id'] == 'sub-'+par2['participant_id']:
                         par['age'] = par2['age']

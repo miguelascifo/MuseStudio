@@ -1,7 +1,6 @@
 # MuseStudio
 
 [![DOI](https://zenodo.org/badge/334904649.svg)](https://zenodo.org/badge/latestdoi/334904649)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/miguelascifo/MuseStudio.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/miguelascifo/MuseStudio/context:python)
 [![PyPI](https://img.shields.io/pypi/v/musestudio)](https://pypi.org/project/musestudio/)
 [![PyPI - License](https://img.shields.io/pypi/l/musestudio)](https://github.com/miguelascifo/MuseStudio/blob/main/LICENSE)
 
@@ -46,3 +45,8 @@ participants = [
     }
 ]
 ```
+
+## Citing
+Sánchez-Cifo, M. Á., Montero, F., & López, M. T. (2021). MuseStudio: Brain Activity Data Management Library for Low-Cost EEG Devices. Applied Sciences, 11(16), 7644. MDPI AG. Retrieved from http://dx.doi.org/10.3390/app11167644
+
+Miguel Ángel Sánchez-Cifo, Francisco Montero, & Maria Teresa López (2021). MuseStudio (0.1.0). Zenodo. https://doi.org/10.5281/zenodo.4564083

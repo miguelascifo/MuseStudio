@@ -1,8 +1,6 @@
 import pandas as pd
-import dash_html_components as html
-from dash import Dash, callback_context
+from dash import Dash, callback_context, dcc, html
 from dash.dependencies import Input, Output
-from dash_core_components import Checklist, Graph, Interval, Slider
 from dash_daq import BooleanSwitch
 from datetime import datetime, timezone
 from plotly.graph_objects import Scatter
@@ -108,7 +106,7 @@ def start_streaming(inlets, channels = ['TP9', 'AF7', 'AF8', 'TP10'], debug = Fa
             else:
                 df_to_show = df[index].tail(data_shown)
                 df_to_show = df_to_show[in_channels_selected]
-            
+
             channel_qualities = []
             for i in in_channels_selected:
                 if abs(df_to_show[i].tail(200).max() - df_to_show[i].tail(200).min()) < 300:
@@ -127,7 +125,7 @@ def start_streaming(inlets, channels = ['TP9', 'AF7', 'AF8', 'TP10'], debug = Fa
                 for index2, column in enumerate(df_to_show.columns):
                     fig.add_trace(
                         Scatter({
-                            'x': df_to_show.index2,
+                            'x': df_to_show.index,
                             'y': df_to_show[column]
                         }),
                         row=j[index2],
@@ -154,7 +152,7 @@ def start_streaming(inlets, channels = ['TP9', 'AF7', 'AF8', 'TP10'], debug = Fa
             graphs.append(
                 html.Div([
                     html.H3(inlet.info().name()),
-                    Graph(
+                    dcc.Graph(
                         id='muse_livestream',
                         config={
                             'displaylogo': False,
@@ -174,13 +172,13 @@ def serve_layout(channels):
         html.Div([
             html.H1('Muse streaming'),
 
-            Interval(
+            dcc.Interval(
                 id='interval_component',
                 interval=1*100,
                 n_intervals=0
             ),
 
-            Checklist(
+            dcc.Checklist(
                 id='channels_selected',
                 options=[
                     {'label': 'TP9', 'value': 'TP9'},
@@ -202,11 +200,11 @@ def serve_layout(channels):
 
             html.P('Expand graphs'),
 
-            BooleanSwitch(id='expand_graphs', on=False), # lgtm [py/call-to-non-callable]
+            BooleanSwitch(id='expand_graphs', on=False),
 
             html.P('Update interval'),
 
-            Slider(
+            dcc.Slider(
                 id='interval_modifier',
                 min=200,
                 max=5000,

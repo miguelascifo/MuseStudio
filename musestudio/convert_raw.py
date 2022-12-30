@@ -51,7 +51,7 @@ def to_mne_eeg(eegstream = None, line_freq = None,  filenames = None, nasion = N
     
     for index, stream in enumerate(eegstream):
         # Get channels position
-        dig_montage = channels.make_dig_montage(ch_pos=dict(zip(ch_names, sensor_coord)), nasion=nasion[index] if nasion is not None else None, lpa=lpa[index] if lpa is not None else None, rpa=rpa[index] if rpa is not None else None, coord_frame='head')
+        dig_montage = channels.make_dig_montage(ch_pos=dict(zip(ch_names, sensor_coord)), nasion=nasion if nasion is not None else None, lpa=lpa if lpa is not None else None, rpa=rpa if rpa is not None else None, coord_frame='head')
         # Create raw info for processing
         info = create_info(ch_names=dig_montage.ch_names, sfreq=float(stream['info']['nominal_srate'][0]), ch_types='eeg')
         # Add channels position to info
